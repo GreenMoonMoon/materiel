@@ -4,10 +4,11 @@ project(materiel)
 set(CMAKE_CXX_STANDARD 20)
 set(external_INCLUDE_DIRS
         external/imgui
-#        external/imgui_node_editor/NodeEditor/Include
         external/imnodes
         external/glad/include
-        external/glfw/include)
+        external/glfw/include
+        external/glm
+        external/stb)
 
 set(glad_SOURCE_FILE
         external/glad/src/gl.c)
@@ -27,20 +28,6 @@ set(imgui_SOURCE_FILES
         external/imgui/backends/imgui_impl_opengl3.cpp
         external/imgui/backends/imgui_impl_glfw.cpp)
 
-#set(imgui_node_SOURCE_FILES
-#        external/imgui_node_editor/NodeEditor/Source/crude_json.cpp
-#        external/imgui_node_editor/NodeEditor/Source/crude_json.h
-#        external/imgui_node_editor/NodeEditor/Source/imgui_bezier_math.h
-#        external/imgui_node_editor/NodeEditor/Source/imgui_bezier_math.inl
-#        external/imgui_node_editor/NodeEditor/Source/imgui_canvas.cpp
-#        external/imgui_node_editor/NodeEditor/Source/imgui_canvas.h
-#        external/imgui_node_editor/NodeEditor/Source/imgui_extra_math.h
-#        external/imgui_node_editor/NodeEditor/Source/imgui_extra_math.inl
-#        external/imgui_node_editor/NodeEditor/Source/imgui_node_editor.cpp
-#        external/imgui_node_editor/NodeEditor/Source/imgui_node_editor_api.cpp
-#        external/imgui_node_editor/NodeEditor/Source/imgui_node_editor_internal.h
-#        external/imgui_node_editor/NodeEditor/Source/imgui_node_editor_internal.inl)
-
 set(imnodes_SOURCE_FILE external/imnodes/imnodes.cpp)
 
 
@@ -48,10 +35,9 @@ set(SOURCE_FILES
         src/main.cpp
         ${glad_SOURCE_FILE}
         ${imgui_SOURCE_FILES}
-#        ${imgui_node_SOURCE_FILES}
         ${imnodes_SOURCE_FILE})
 
-add_executable(materiel)
+add_executable(materiel src/compute.h external/stb/stb_image.h external/stb/stb_image_write.h)
 target_sources(materiel PRIVATE ${SOURCE_FILES})
 target_include_directories(materiel PRIVATE ${external_INCLUDE_DIRS})
 target_link_directories(materiel PRIVATE external/glfw/lib-vc2022)

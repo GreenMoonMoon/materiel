@@ -3,8 +3,9 @@
 #include "backends/imgui_impl_opengl3.h"
 #include "glad/gl.h"
 #include "GLFW/glfw3.h"
-
 #include "imnodes.h"
+
+#include "compute.h"
 
 #include <iostream>
 #include <vector>
@@ -20,11 +21,11 @@ int main(int argc, char *argv[]) {
     if (!glfwInit())
         return 1;
 
-    const char *glsl_version = "#version 130";
-    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
-    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 0);
-    //glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);  // 3.2+ only
-    //glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);            // 3.0+ only
+    const char *glsl_version = "#version 460";
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 6);
+    glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+    glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
 
     // Create window with graphics context
     GLFWwindow *window = glfwCreateWindow(1280, 720, "Dear ImGui GLFW+OpenGL3 example", NULL, NULL);
@@ -35,6 +36,8 @@ int main(int argc, char *argv[]) {
 
     // Initialize GLAD
     gladLoadGL(glfwGetProcAddress);
+
+    testNoiseShader();
 
     // Setup Dear ImGui context
     IMGUI_CHECKVERSION();

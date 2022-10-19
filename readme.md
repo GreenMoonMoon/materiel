@@ -16,3 +16,14 @@ that supports it for has many context there are. This should make creating varia
 * material datatype. Linking special nodes with a Material Link datatype will connect inputs with any output of the same
 id, all under a single link. This enables you to manage material at a higher level or work on all the texture at the same
 time. Ex: Mixing material, creating a tileable material, etc.
+
+## Roadmap
+* [ ] Implementing compute shader to generate image
+* [ ] Save texture to file
+* [ ] Implement OpenEXR export
+* [ ] continue writing this roadmap
+* [ ] ...?
+* [ ] Create preview buffer for nodes and store the final texture 
+* [ ] lazy eval and buffers
+* [ ] seriously idk
+* [ ] Implement material tree analysis to generate shader based on branches ?
